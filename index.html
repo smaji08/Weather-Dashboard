@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
 
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Augustine's Weather Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Augustine's Weather Dashboard</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css"/>
 
-</head>
-<body>
-<div class="container">
-    <nav class="navbar navbar-dark bg-dark justify-content-center" id= "nav-bar">
-        Weather Dashboard
-    </nav>
-</div>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-dark bg-dark justify-content-center" id= "nav-bar">
+                Weather Dashboard
+            </nav>
+        </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="card text-dark bg-light">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h5>Search for City..</h5>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control">
-                            <div class="input-group-append">
-                              <button class="btn btn-light"><i class="icon-play"></i></button>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card text-dark bg-light">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h5>Search for City..</h5>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-append">
+                                    <button class="btn btn-light"><i class="icon-play"></i></button>
+                                    </div>
+                                </div>
                             </div>
+                            <!--Starting list group here -->
+                            <div class="list-group">
+                                
+                                <!-- <a href="#" class="list-group-item list-group-item-action list-group-item-primary"></a> -->
+                                                        
+                            </div>
+                            <!-- Ends here --> 
                         </div>
                     </div>
-                    <!--Starting list group here -->
-                    <div class="list-group">
-                        
-                        <!-- <a href="#" class="list-group-item list-group-item-action list-group-item-primary"></a> -->
-                                                
+                </div>
+                <div class="col-sm-8">
+                    <div class="container placeholder"></div>
+                    <div class="row currentcityrow">
+                        <div class="col-sm currentcity">
+                            <h3><span id="latestCity"></span> <span id="todaysDate"></span></span><span id="imgCondition"></span></h3>
+                        </div>
                     </div>
-                    <!-- Ends here --> 
+                    <h4>5-Day Forecast</h4>
+                    <div class="row justify-content-between fivedays">
+                        
+                        <!-- <div class="col-2" >
+                            
+                        </div> -->
+                    </div>    
+
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-8">
-            <div class="container placeholder"></div>
-            <div class="row currentcity">
-                <div class="col-sm">
-                    <h3><span id="latestCity"></span> <span id="todaysDate"></span></span><span id="imgCondition"></span></h3>
-                </div>
-            </div>
-            <h4>5-Day Forecast</h4>
-            <div class="row justify-content-between fivedays">
-                
-                <div class="col-2" >
-                    
-                </div>
-            </div>    
 
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
+        <!-- Generic scripts and custom script -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+        <script src="assets/js/script.js"></script>
+    </body>
 </html>
 
