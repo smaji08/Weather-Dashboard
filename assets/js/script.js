@@ -1,5 +1,5 @@
 var apiKey = "APPID=25475d88742bbd67291eb692e4e7b093";
-var baseURL = "http://api.openweathermap.org/data/2.5/";
+var baseURL = "https://api.openweathermap.org/data/2.5/";
 var tempUnits = "imperial"; //metric
 
 $(document).ready(function(){
@@ -21,6 +21,9 @@ $(document).ready(function(){
         event.preventDefault();
         
         searchCity = $(".addcity").val().trim();
+        if (searchCity === ""){
+            return;
+        }
         cities.push(searchCity);
         
         var listDiv = $(".cities");
@@ -53,7 +56,7 @@ $(document).ready(function(){
         var h3 = $("<h3>");
         h3.append($("<span>").text(cityName));
         h3.append($("<span>").text("(" + moment().format('L') + ")"));
-        h3.append($("<span>").append($("<img>").attr("src","http://openweathermap.org/img/wn/" + icon +"@2x.png")));
+        h3.append($("<span>").append($("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")));
         
         $(".currentcity").append(h3);
         $(".currentcity").append($("<p>").text("Temperature : " + response.main.temp + " \u2109"));
@@ -104,7 +107,7 @@ $(document).ready(function(){
             var icon = response.list[i].weather[0].icon;
             
             var pDate = $("<h5>").text(dateNew);
-            var imgIcon = $("<img>").attr("src","http://openweathermap.org/img/wn/" + icon +"@2x.png")
+            var imgIcon = $("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")
             var pTemp = $("<p>").text("Temp : " + response.list[i].main.temp + " \u2109");
             var pHumid = $("<p>").text("Humidity : " + response.list[i].main.humidity + "%"); 
             colDiv.append(pDate,imgIcon,pTemp,pHumid);
