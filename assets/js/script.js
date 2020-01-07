@@ -4,12 +4,41 @@ var tempUnits = "imperial"; //metric
 
 $(document).ready(function(){
     
-    var searchCity = "Hartford";
-    var queryURL = baseURL + "weather?q=" + searchCity +"&units=" + tempUnits+ "&" + apiKey;
+    var searchCity;
+    var queryURL;
     var cityLat;
     var cityLon;
     var cityName;
+    var cities = [];
 
+    $(document).on("click",".citybutton",function(){
+        cityName = $(this)[0].dataset.city;
+        rendercity(cityName);
+    });
+
+    $("button").on("click",function(event){
+
+        event.preventDefault();
+        
+        searchCity = $(".addcity").val().trim();
+        cities.push(searchCity);
+        
+        var listDiv = $(".cities");
+        var liTag = $("<button>").text(searchCity);
+        liTag.attr("data-city",searchCity);
+        liTag.addClass("list-group-item list-group-item-action list-group-item-primary citybutton");
+        listDiv.append(liTag);
+        $(".addcity").val("");
+        rendercity(searchCity);
+
+    });    
+    
+    function rendercity(searchCity){
+    queryURL = baseURL + "weather?q=" + searchCity +"&units=" + tempUnits+ "&" + apiKey;
+
+    $(".currentcity").empty();
+    $(".fivedays").empty();  
+    
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -21,9 +50,12 @@ $(document).ready(function(){
         cityLon = response.coord.lon;
         var icon = response.weather[0].icon;
 
-        $("#latestCity").text(cityName);
-        $("#todaysDate").text("(" + moment().format('L') + ")");
-        $("#imgCondition").append($("<img>").attr("src","http://openweathermap.org/img/wn/" + icon +"@2x.png"));
+        var h3 = $("<h3>");
+        h3.append($("<span>").text(cityName));
+        h3.append($("<span>").text("(" + moment().format('L') + ")"));
+        h3.append($("<span>").append($("<img>").attr("src","http://openweathermap.org/img/wn/" + icon +"@2x.png")));
+        
+        $(".currentcity").append(h3);
         $(".currentcity").append($("<p>").text("Temperature : " + response.main.temp + " \u2109"));
         $(".currentcity").append($("<p>").text("Humidity : " + response.main.humidity + "%"));
         $(".currentcity").append($("<p>").text("Wind Speed : " + response.wind.speed + " MPH"));
@@ -31,11 +63,11 @@ $(document).ready(function(){
         getuvindex(cityLat,cityLon);
         getforecast(cityName);
     });
-    
+    }
     function getuvindex(lat,lon){
-        
+                
         queryURL = baseURL + "uvi?"+ apiKey + "&lat=" + lat + "&lon=" +lon;
-
+        
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -82,5 +114,7 @@ $(document).ready(function(){
     });
 
 }
+
+
     
 });
