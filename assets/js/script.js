@@ -91,8 +91,12 @@ $(document).ready(function(){
             var h3 = $("<h3>");
             h3.append($("<span>").text(cityName + ", " + countryName));
             h3.append($("<span>").text(" (" + moment().format('L') + ")"));
+            if (icon == "01d"){
+                h3.append($("<span>").append($("<img>").attr({src:"assets/images/sunny.png",height: "50%", width:"85%"})));
+            }
+            else{
             h3.append($("<span>").append($("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")));
-            
+            }
             $(".currentcity").append(h3);
             $(".currentcity").append($("<p>").text("Temperature : " + response.main.temp + " \u2109"));
             $(".currentcity").append($("<p>").text("Humidity : " + response.main.humidity + "%"));
@@ -141,7 +145,13 @@ $(document).ready(function(){
                 var icon = response.list[i].weather[0].icon;
                 
                 var pDate = $("<h5>").text(dateNew);
-                var imgIcon = $("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")
+                if (icon == "01d"){
+                    var imgIcon = $("<img>").attr({src:"assets/images/sunny.png",height: "50%", width:"85%"});
+                }
+                else{
+                    var imgIcon = $("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png");
+                }
+                // var imgIcon = $("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")
                 var pTemp = $("<p>").text("Temp : " + response.list[i].main.temp + " \u2109");
                 var pHumid = $("<p>").text("Humidity : " + response.list[i].main.humidity + "%"); 
                 colDiv.append(pDate,imgIcon,pTemp,pHumid);
