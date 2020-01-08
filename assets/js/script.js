@@ -11,6 +11,16 @@ $(document).ready(function(){
     var cityName;
     var cities = [];
 
+    // var retrievedCities = localStorage.getItem("cities");
+    
+    //retrieving the stored objects
+    // if (retrievedCities !== null){
+    //     retrievedCities = JSON.parse(retrievedCities);
+    // }
+    // else{
+    //     localStorage.setItem("cities", JSON.stringify(cities));
+    // }
+    // localStorage.setItem("cities", JSON.stringify(retrievedCities));
     $(document).on("click",".citybutton",function(){
         cityName = $(this)[0].dataset.city;
         rendercity(cityName);
