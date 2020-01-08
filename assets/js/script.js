@@ -9,6 +9,7 @@ $(document).ready(function(){
     var cityLat;
     var cityLon;
     var cityName;
+    var cityID;
     var cities = []; 
     var listDiv = $(".cities");
     var liTag;
@@ -79,15 +80,17 @@ $(document).ready(function(){
             method: "GET"
             })
         .then(function(response){
-
+            console.log(response);
             cityName = response.name;
+            cityID = response.id;
+            countryName = response.sys.country;
             cityLat = response.coord.lat;
             cityLon = response.coord.lon;
             var icon = response.weather[0].icon;
 
             var h3 = $("<h3>");
-            h3.append($("<span>").text(cityName));
-            h3.append($("<span>").text("(" + moment().format('L') + ")"));
+            h3.append($("<span>").text(cityName + ", " + countryName));
+            h3.append($("<span>").text(" (" + moment().format('L') + ")"));
             h3.append($("<span>").append($("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")));
             
             $(".currentcity").append(h3);
@@ -96,7 +99,7 @@ $(document).ready(function(){
             $(".currentcity").append($("<p>").text("Wind Speed : " + response.wind.speed + " MPH"));
             
             getuvindex(cityLat,cityLon);
-            getforecast(cityName);
+            getforecast(cityID);
         });
     }
 
@@ -119,8 +122,8 @@ $(document).ready(function(){
 
     }
 
-    function getforecast(city){
-        queryURL = baseURL + "forecast?q=" + city + "&units=" + tempUnits + "&" + apiKey;
+    function getforecast(cityID){
+        queryURL = baseURL + "forecast?id=" + cityID + "&units=" + tempUnits + "&" + apiKey;
 
         $.ajax({
             url: queryURL,
