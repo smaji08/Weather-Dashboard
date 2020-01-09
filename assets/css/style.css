@@ -21,10 +21,24 @@ body{
 
 }
 h3{
-    color: rgba(255, 0, 98, 0.609);
+    color: blue;
+    overflow-wrap: break-word;
 }
+
 .currentcity p {
-    font-size: 18px;
+    background-color: rgb(200, 246, 200);
+}
+
+.spantemp{
+    padding: 15px;
+    font-size: 65px;
+}
+
+.currentcity{
+    background-color:rgba(17, 230, 194, 0.623);
+}
+.yourlocation{
+    background-color: rgba(17, 230, 194, 0.623);
 }
 .placeholder{
     height:20px;
@@ -35,14 +49,20 @@ h3{
 }
 
 .eachday{
-    background-color:blue;
+    background-color:rgb(5, 172, 158);
     border-radius: 5px;
     font-size: smaller;
     color: white;
+    overflow: hidden;
 }
 
 .uvindex{
     background-color: rgb(187, 35, 35);
     color: white;
     padding: 3px 5px;
+}
+
+.day{
+    text-align: center;
+    font-size: 22px;
 }

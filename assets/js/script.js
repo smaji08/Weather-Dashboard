@@ -38,7 +38,7 @@ $(document).ready(function(){
         cities = JSON.parse(localStorage["cities"]);
 
         cities.forEach(element => {
-            liTag = $("<button>").text(element);
+            liTag = $("<button>").html("<b>" + element + "</b>");
             liTag.attr("data-city",element);
             liTag.addClass("list-group-item list-group-item-action list-group-item-primary citybutton");
             listDiv.append(liTag);
@@ -79,7 +79,7 @@ $(document).ready(function(){
         cities.push(searchCity);
         localStorage.setItem("cities", JSON.stringify(cities));
 
-        liTag = $("<button>").text(searchCity);
+        liTag = $("<button>").html("<b>" + searchCity + "</b>");
         liTag.attr("data-city",searchCity);
         liTag.addClass("list-group-item list-group-item-action list-group-item-primary citybutton");
         listDiv.append(liTag);
@@ -111,18 +111,21 @@ $(document).ready(function(){
             var h3 = $("<h3>");
             $(".currentcity").append($("<h4>").text(moment().format('ll')));
             h3.append($("<span>").text(cityName + ", " + countryName));
-            // h3.append($("<span>").text(" (" + moment().format('L') + ")"));
-            
+                       
             if (icon == "01d"){
                 h3.append($("<span>").append($("<img>").attr({src:"assets/images/sunny.png",height: "15%", width:"20%"})));
             }
             else{
                 h3.append($("<span>").append($("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png")));
             }
+            
+            var spanTemp = $("<span>");
+            spanTemp.html(Math.round(response.main.temp) + " \u2109");
+            spanTemp.addClass("spantemp");
+            h3.append(spanTemp);
             $(".currentcity").append(h3);
-            $(".currentcity").append($("<p>").text("Temperature : " + response.main.temp + " \u2109"));
-            $(".currentcity").append($("<p>").text("Humidity : " + response.main.humidity + "%"));
-            $(".currentcity").append($("<p>").text("Wind Speed : " + response.wind.speed + " MPH"));
+            $(".currentcity").append($("<p>").html("<b>Humidity : " + response.main.humidity + "%</b>"));
+            $(".currentcity").append($("<p>").html("<b>Wind Speed : " + response.wind.speed + " MPH</b>"));
             
             getuvindex(cityLat,cityLon);
             getforecast(cityID);
@@ -140,7 +143,7 @@ $(document).ready(function(){
             
             $(".yourlocation").append($("<h5>").text("You are in :"));
             $(".yourlocation").append($("<h3>").append($("<span>").text(response.name + ", " + response.sys.country)));
-            $(".yourlocation").append($("<h4>").append($("<span>").text("Temperature: " + response.main.temp + " \u2109")));
+            $(".yourlocation").append($("<h4>").append($("<span>").text( Math.round(response.main.temp) + " \u2109")));
             
         }); 
     }
@@ -155,8 +158,8 @@ $(document).ready(function(){
             })
         .then(function(response){
                 
-            var pUVI = $("<p>").text("UV Index : ");
-            var spanUVI = $("<span>").text(response.value);
+            var pUVI = $("<p>").html("<b>UV Index : <b>");
+            var spanUVI = $("<span>").html("<b>"+ response.value + "</b>");
             spanUVI.attr("class","uvindex");
             pUVI.append(spanUVI);
             $(".currentcity").append(pUVI);
@@ -172,32 +175,46 @@ $(document).ready(function(){
             method: "GET"
         })
         .then(function(response){
-            console.log(response);    
+            
+            function dayOfWeekAsString(dayIndex) {
+                return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
+            }            
             for (var i=0;i<40;i+=7){
-                var rowDiv = $(".fivedays");
+                var rowCont = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
+
+                if (i%2 == 0){
+                    colDiv.attr("style","background-color:rgb(9, 146, 135)");
+                }
             
                 var myDate = new Date(response.list[i].dt_txt);
                 var sysdate = new Date();
+
                 if (myDate.getDate() === sysdate.getDate()){
                     continue;
                 }
+
                 var dateNew = (myDate.getMonth()+1)+"/"+myDate.getDate()+"/"+myDate.getFullYear();
                 var icon = response.list[i].weather[0].icon;
-                
+                var day = dayOfWeekAsString(myDate.getDay());
+                day = day.slice(0,3).toUpperCase();
+
                 var pDate = $("<h5>").text(dateNew);
-                
+                var pDay = $("<p>").html("<b>" + day +"</b>");
+                pDay.addClass("day");
+
                 if (icon == "01d"){
-                    var imgIcon = $("<img>").attr({src:"assets/images/sunny.png",height: "50%", width:"85%"});
+                    var imgIcon = $("<img>").attr({src:"assets/images/sunny.png",height: "40%", width:"85%"});
                 }
                 else{
                     var imgIcon = $("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png");
                 }
 
-                var pTemp = $("<p>").text("Temp : " + response.list[i].main.temp + " \u2109");
+                var pTemp = $("<p>").text("Temp : " + Math.round(response.list[i].main.temp) + " \u2109");
+                pTemp.css("font-size","16px");
                 var pHumid = $("<p>").text("Humidity : " + response.list[i].main.humidity + "%"); 
-                colDiv.append(pDate,imgIcon,pTemp,pHumid);
-                rowDiv.append(colDiv);
+                colDiv.append(pDate,pDay,imgIcon,pTemp,pHumid);
+                rowCont.append(colDiv);
             }
 
         });
