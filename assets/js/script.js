@@ -13,22 +13,26 @@ $(document).ready(function(){
     var cities = []; 
     var listDiv = $(".cities");
     var liTag;
-
+    $(".currentcity").hide();
+    $(".yourlocation").hide();
     function findme(){
         if (!navigator.geolocation) {
-            $(".yourlocation").append($("<p>").text("Geolocation is not supported by your browser"));
+            $(".yourlocation").show();
+            $(".yourlocation").append($("<p>").html("<strong>Geolocation is not supported by your browser</strong>"));
         }
         else {
             navigator.geolocation.getCurrentPosition(success, error);
         }
 
         function success(position){
+            $(".yourlocation").show();
             var latitude  = position.coords.latitude;
             var longitude = position.coords.longitude;
             iamhere(latitude,longitude);
         }
         function error() {
-            $(".yourlocation").append($("<p>").text("Sorry!! Unable to retrieve your location"));
+            $(".yourlocation").show();
+            $(".yourlocation").append($("<p>").html("<i>Sorry!! Unable to retrieve your location</i>"));
         }
     }
     
@@ -90,7 +94,7 @@ $(document).ready(function(){
     
     function rendercity(searchCity){
         queryURL = baseURL + "weather?q=" + searchCity +"&units=" + tempUnits+ "&" + apiKey;
-
+        $(".currentcity").show();
         $(".currentcity").empty();
         $(".fivedays").empty();  
         
@@ -175,10 +179,13 @@ $(document).ready(function(){
             method: "GET"
         })
         .then(function(response){
+
+            $(".currentcityrow").after($("<h4>").html("<b>5-Day Forecast</b>"));
             
             function dayOfWeekAsString(dayIndex) {
                 return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
             }            
+            
             for (var i=0;i<40;i+=7){
                 var rowCont = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
@@ -193,7 +200,7 @@ $(document).ready(function(){
                 if (myDate.getDate() === sysdate.getDate()){
                     continue;
                 }
-
+                
                 var dateNew = (myDate.getMonth()+1)+"/"+myDate.getDate()+"/"+myDate.getFullYear();
                 var icon = response.list[i].weather[0].icon;
                 var day = dayOfWeekAsString(myDate.getDay());
