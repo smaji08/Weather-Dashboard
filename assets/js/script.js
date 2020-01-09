@@ -21,7 +21,7 @@ $(document).ready(function(){
             $(".yourlocation").append($("<p>").html("<strong>Geolocation is not supported by your browser</strong>"));
         }
         else {
-            navigator.geolocation.getCurrentPosition(success, error);
+            navigator.geolocation.getCurrentPosition(success,error);
         }
 
         function success(position){
@@ -64,7 +64,7 @@ $(document).ready(function(){
 
         event.preventDefault();
         
-        var inputSearchCity = $(".addcity").val().trim();
+        var inputSearchCity = $(".addcity").val().trim().toLowerCase();
         if (inputSearchCity === ""){
             return;
         }
@@ -132,6 +132,7 @@ $(document).ready(function(){
             $(".currentcity").append($("<p>").html("<b>Wind Speed : " + response.wind.speed + " MPH</b>"));
             
             getuvindex(cityLat,cityLon);
+            // $(".currentcityrow").after($("<h4>").html("<b>5-Day Forecast</b>"));
             getforecast(cityID);
         });
     }
@@ -180,13 +181,13 @@ $(document).ready(function(){
         })
         .then(function(response){
 
-            $(".currentcityrow").after($("<h4>").html("<b>5-Day Forecast</b>"));
+            // $(".currentcityrow").after($("<h4>").html("<b>5-Day Forecast</b>"));
             
             function dayOfWeekAsString(dayIndex) {
                 return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
             }            
             
-            for (var i=0;i<40;i+=7){
+            for (var i=0;i<40;i+=8){
                 var rowCont = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
 
