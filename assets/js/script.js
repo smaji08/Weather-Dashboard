@@ -172,12 +172,16 @@ $(document).ready(function(){
             method: "GET"
         })
         .then(function(response){
-                
-            for (var i=0;i<40;i+=8){
+            console.log(response);    
+            for (var i=0;i<40;i+=7){
                 var rowDiv = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
             
                 var myDate = new Date(response.list[i].dt_txt);
+                var sysdate = new Date();
+                if (myDate.getDate() === sysdate.getDate()){
+                    continue;
+                }
                 var dateNew = (myDate.getMonth()+1)+"/"+myDate.getDate()+"/"+myDate.getFullYear();
                 var icon = response.list[i].weather[0].icon;
                 
