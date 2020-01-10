@@ -5,6 +5,7 @@
 body{
     background-image: url(../images/weather-970917_1280small.jpg);
 }
+
 #nav-bar{
     color: rgba(255, 255, 255, 0.897);
     font-size: 30px;
@@ -24,15 +25,14 @@ body{
     padding: 15px;
     border:1px solid lightgray;
     border-radius: 5px;
-
 }
+
 h3{
     color: blue;
     overflow-wrap: break-word;
 }
 
 .currentcity p {
-    /* background-color: rgb(200, 246, 200); */
     text-align: center;
 }
 
@@ -56,7 +56,7 @@ h3{
 }
 
 .eachday{
-    background-color:rgb(5, 172, 158);
+    background-color:rgb(7, 138, 127);
     border-radius: 5px;
     font-size: smaller;
     color: white;
@@ -72,4 +72,9 @@ h3{
 .day{
     text-align: center;
     font-size: 22px;
+}
+
+.clearcities{
+    background-color:black;
+    color: rgba(255, 255, 255, 0.897);
 }
