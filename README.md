@@ -1,4 +1,6 @@
 # Weather-Dashboard
+https://smaji08.github.io/Weather-Dashboard/
+
 This application was developed using Bootstrap 4.3.1, HTML5, CSS3, JavaScript, JQuery, AJAX API and DOM.
 
 ### Overview
@@ -27,6 +29,7 @@ A Weather dashboard application with search functionality to find current weathe
 Used openweathermap API to get the weather data. 
 Used AJAX to hook into the API to retrieve data in JSON format.
 Used dynamically updated HTML and CSS powered by jQuery.
+Added the App to my Portfolio 
 
 ### Credits
 1. http://stackoverflow.com/
