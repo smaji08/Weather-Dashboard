@@ -202,11 +202,11 @@ $(document).ready(function(){
             function dayOfWeekAsString(dayIndex) {
                 return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
             }            
-            
+            console.log(response);
             //the for loop to get 1 record each from every day for the next 5 days
             var myDate = new Date();
 
-            for (var i=0;i<40;i++){
+            for (var i=0;i<response.list.length;i++){
                 var rowCont = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
                 
