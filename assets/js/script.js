@@ -204,12 +204,21 @@ $(document).ready(function(){
             }            
             
             //the for loop to get 1 record each from every day for the next 5 days
-            for (var i=7;i<40;i+=8){
+            var myDate = new Date();
+
+            for (var i=0;i<40;i++){
                 var rowCont = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
-
-                var myDate = new Date(response.list[i].dt_txt);
+                
+                var tempDate = new Date(response.list[i].dt_txt);
                 var icon = response.list[i].weather[0].icon;
+
+                if (myDate.getDate() === tempDate.getDate()){
+                    continue;
+                }
+                else{
+                    myDate = tempDate;
+                }
                 
                 //date formatting
                 var dateNew = (myDate.getMonth()+1)+"/"+myDate.getDate()+"/"+myDate.getFullYear();
