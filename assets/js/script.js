@@ -60,7 +60,7 @@ $(document).ready(function(){
     $(document).on("click",".clearcities", function(){
         localStorage.clear();
         listDiv.empty();
-        cities = [];
+        cities.length = 0;
         $(".currentcity").hide();
         $(".fivedays").hide();
     });
@@ -232,9 +232,9 @@ $(document).ready(function(){
                     var imgIcon = $("<img>").attr("src","https://openweathermap.org/img/wn/" + icon +"@2x.png");
                 }
 
-                var pTemp = $("<p>").text("Temp : " + Math.round(response.list[i].main.temp) + " \u2109");
+                var pTemp = $("<p>").text("Temp: " + Math.round(response.list[i].main.temp) + " \u2109");
                 pTemp.css("font-size","16px");
-                var pHumid = $("<p>").text("Humidity : " + response.list[i].main.humidity + "%"); 
+                var pHumid = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%"); 
                 colDiv.append(pDate,pDay,imgIcon,pTemp,pHumid);
                 rowCont.append(colDiv);
             }
