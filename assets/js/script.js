@@ -205,7 +205,7 @@ $(document).ready(function(){
             
             //the for loop to get 1 record each from every day for the next 5 days
             var myDate = new Date();
-
+            var count = 0;
             for (var i=0;i<response.list.length;i++){
                 var rowCont = $(".fivedays");
                 var colDiv = $("<div>").attr("class","col-sm-2 eachday");
@@ -218,6 +218,8 @@ $(document).ready(function(){
                 }
                 else{
                     myDate = tempDate;
+                    count++;
+                    if (count > 5){break;}
                 }
                 
                 //date formatting
