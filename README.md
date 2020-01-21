@@ -1,5 +1,6 @@
 # Weather-Dashboard
 Deployed Version -  https://smaji08.github.io/Weather-Dashboard/
+
 Repository Link - https://github.com/smaji08/Weather-Dashboard
 
 This application was developed using Bootstrap 4.3.1, HTML5, CSS3, JavaScript, JQuery, AJAX API and DOM.
