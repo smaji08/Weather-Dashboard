@@ -1,5 +1,6 @@
 # Weather-Dashboard
-https://smaji08.github.io/Weather-Dashboard/
+Deployed Version -  https://smaji08.github.io/Weather-Dashboard/
+Repository Link - https://github.com/smaji08/Weather-Dashboard
 
 This application was developed using Bootstrap 4.3.1, HTML5, CSS3, JavaScript, JQuery, AJAX API and DOM.
 
@@ -24,6 +25,11 @@ A Weather dashboard application with search functionality to find current weathe
 - Application loads last searched city forecast on page load.
 
 - Used the Geolocation API to add the user's current location to the initial landing page.
+
+**Below is the screenshot of the application.**
+
+![weatherdashboard](https://user-images.githubusercontent.com/54964461/72821144-18353300-3c3e-11ea-994c-6a1e41c506ae.png)
+
 
 ### My Experience
 Used openweathermap API to get the weather data. 
